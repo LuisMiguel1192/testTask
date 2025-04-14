@@ -12,7 +12,7 @@
     "studio": "npx prisma studio",
     "init:db": "npx ts-node db/initDatabase.ts",
     "clear": "node clear-screenshots.js",
-    "test": "cucumber-js --format json:reports/cucumber-report.json",
+    "test": "cucumber-js --require-module ts-node/register --require features/step-definitions/**/*.ts",
     "report": "ts-node generate-report.js",
     "test:with-report": "npm run test && npm run report"
   },

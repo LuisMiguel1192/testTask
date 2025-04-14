@@ -45,6 +45,6 @@ Then('the app user {string} should not exist in the database', async function (u
     expect(exists).toBe(false);
 });
 
-When('I delete the app user {string}', async function (username: string) {
+Given('I delete the app user {string}', async function (username: string) {
     await deleteAppUser(username);
 });

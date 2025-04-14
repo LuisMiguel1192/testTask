@@ -5,7 +5,7 @@
     "esModuleInterop": true,
     "strict": true,
     "moduleResolution": "node",
-    "outDir": "./dist"
+    "outDir": "./dist",
   },
   "include": ["features/**/*.ts", "src/**/*.ts"]
 }

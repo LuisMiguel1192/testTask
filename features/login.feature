@@ -4,7 +4,7 @@ Feature: Login functionality
   @register
   Scenario: User register
     Given I navigate to the "register" page
-    When I register with username "testTask2" and password "12345678"
+    When I register with username "testTask6" and password "12345678"
     And I click the "Register" button
     Then I should see the text "Successfully registered, you can log in now."
 
