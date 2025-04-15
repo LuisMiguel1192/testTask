@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { BASE_URL } from '../tests/login.spec';
+import dotenv from 'dotenv';
 
-
+dotenv.config();
 export default class LoginPage {
     readonly page: Page;
 
@@ -10,6 +10,7 @@ export default class LoginPage {
     }
 
     public async goto() {
-        await this.page.goto(`${BASE_URL}/login`);
+        const baseUrl = process.env.BASE_URL;
+        await this.page.goto(`${baseUrl}/login`);
     }
 }

@@ -1,11 +1,5 @@
 import { test, expect } from "../fixtures/loginPage.fixture";
 
-
-export const BASE_URL = process.env.BASE_URL || (() => {
-  console.warn("BASE_URL no está definida en el .env");
-  return 'http://localhost:3000';
-})();
-
 test("@loginSuccess", async ({ LoginPage, CommonsPage }) => {
   await CommonsPage.fillInput("username", "testTask9");
   await CommonsPage.fillInput("password", "12345678");
