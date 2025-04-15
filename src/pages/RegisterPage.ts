@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BASE_URL } from '../tests/login.spec';
 
 
-export default class LoginPage {
+export default class RegisterPage {
     readonly page: Page;
 
     constructor(page: Page) {
@@ -10,6 +10,6 @@ export default class LoginPage {
     }
 
     public async goto() {
-        await this.page.goto(`${BASE_URL}/login`);
+        await this.page.goto(`${BASE_URL}/register`);
     }
 }

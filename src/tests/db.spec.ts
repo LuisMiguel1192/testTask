@@ -1,33 +1,30 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { test, expect } from '../fixtures/dbPage.fixture';
 
-export async function createAppUser(data: {
-  username: string;
-  firstname: string;
-  lastname: string;
-  password: string;
-  email: string;
-  enabled?: boolean;
-  nonlocked?: boolean;
-}) {
-  return await prisma.appUser.create({
-    data: {
-      username: data.username,
-      firstname: data.firstname,
-      lastname: data.lastname,
-      password: data.password,
-      email: data.email,
-      enabled: data.enabled ?? true,
-      nonlocked: data.nonlocked ?? true,
-    }
+test('@db', async ({ Db }) => {
+  const testUsername = 'lfigueroa2';
+
+  const newUser = await Db.createUser({
+    username: testUsername,
+    firstname: 'Luis',
+    lastname: 'Figueroa',
+    password: '12345678',
+    email: 'lfigueroa@example.com',
+    roleName: 'admin',
   });
-}
 
-export async function appUserExists(username: string): Promise<boolean> {
-  const user = await prisma.appUser.findUnique({ where: { username } });
-  return !!user;
-}
+  console.log('✅ User add:', newUser.username);
+  expect(newUser.username).toBe(testUsername);
 
-export async function deleteAppUser(username: string) {
-  await prisma.appUser.deleteMany({ where: { username } });
-}
+  expect(newUser).not.toBeNull();
+  expect(newUser.username).toBe(testUsername);
+  expect(newUser.email).toBe('lfigueroa@example.com');
+  expect(typeof newUser.id).toBe('bigint');
+
+  console.log(`✅ user '${newUser.username}' successfully added with ID ${newUser.id}`);
+
+  await Db.deleteUserByUsername(testUsername);
+  console.log('🗑️ User deleted');
+
+  const deleted = await Db.findUser(testUsername);
+  expect(deleted).toBeNull();
+});

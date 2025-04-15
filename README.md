@@ -5,9 +5,6 @@
 ```shell
 npm install
 npx playwright install
-npx cucumber-js
-npm install --save-dev multiple-cucumber-html-reporter
-npm install --save-dev cucumber-html-reporter
 ```
 
 # This is e2e commands
@@ -16,7 +13,6 @@ npm install --save-dev cucumber-html-reporter
 
 ```bash
     npm run test:ui
-    npx cucumber-js --tags "@" --format json:reports/cucumber-report.json && node generate-report.js
 ```
 
 #### other commands for tests
